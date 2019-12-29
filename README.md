@@ -165,6 +165,20 @@ consul-2  10.32.0.13:8301  alive   server  1.4.0rc1  2         dc1  <all>
 
 The Consul UI does not support any form of authentication out of the box so it should not be exposed. To access the web UI, start a port-forward session to the `consul-0` Pod in a new terminal.
 
+#Kubernetes Port Forward 机制访问 pod
+在windows系统中通过Kubernetes的Port Forward机制对本机端口映射到pod端口来实现
+1、安装kubectl
+官网下载页面：https://kubernetes.io/docs/tasks/tools/install-kubectl/
+
+下载对应Kubernetes 相同版本的kubectl：
+https://storage.googleapis.com/kubernetes-release/release/v1.16.2/bin/windows/amd64/kubectl.exe
+把下载的kubectl.exe文件存放在C:\k8s\bin目录下，并把该目录添加到PATH中（步骤略）
+
+2、配置kubectl
+需要获取配置文件:
+一般部署的Kubernetes，会生成 $HOME/.kube/config，把该目录下的config文件，存放在Windows本地对应家目录C:\Users\admin\.kube下
+
+3.设置端口转发
 ```
 kubectl port-forward consul-0 8500:8500
 ```
